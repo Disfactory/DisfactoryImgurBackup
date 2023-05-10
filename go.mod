@@ -3,6 +3,8 @@ module disfactory/imgur-backup
 go 1.19
 
 require (
+	github.com/google/uuid v1.1.2
+	github.com/jmoiron/sqlx v1.3.5
 	github.com/rs/zerolog v1.29.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/viper v1.15.0

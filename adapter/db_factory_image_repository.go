@@ -1,10 +1,11 @@
-package db
+package adapter
 
 import (
 	"fmt"
 
 	domain "disfactory/imgur-backup/domain"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -39,13 +40,15 @@ func NewDBFactoryImageRepository(params PGParameters) (*DBFactoryImageRepository
 	return &repo, nil
 }
 
-func (repo *DBFactoryImageRepository) Close() {
-	repo.db.Close()
+func (repo *DBFactoryImageRepository) Close() error {
+	return repo.db.Close()
 }
 
 func (repo *DBFactoryImageRepository) GetImages(size int, offset int) ([]domain.FactoryImage, error) {
 	var images []domain.FactoryImage
-	err := repo.db.Select(&images, "SELECT id, image_path FROM factory_image LIMIT $1 OFFSET $2;", size, offset)
+
+	// Get latest images sort by created_at
+	err := repo.db.Select(&images, "SELECT id, image_path, created_at FROM api_image ORDER BY created_at DESC LIMIT $1 OFFSET $2;", size, offset)
 	if err != nil {
 		return nil, err
 	}

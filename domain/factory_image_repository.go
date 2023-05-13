@@ -1,13 +1,16 @@
 package domain
 
 import (
-	"github.com/google/uuid"
 	"path/filepath"
+	"time"
+
+	"github.com/google/uuid"
 )
 
 type FactoryImage struct {
-	Id        uuid.UUID `db:"uuid"`
+	Id        uuid.UUID `db:"id"`
 	ImagePath string    `db:"image_path"`
+	CreatedAt time.Time `db:"created_at"`
 }
 
 func (i FactoryImage) GetFileName() string {

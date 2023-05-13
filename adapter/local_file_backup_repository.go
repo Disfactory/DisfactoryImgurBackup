@@ -34,9 +34,9 @@ func (r LocalFileBackupRepository) IsExist(image_name string) bool {
 func (r LocalFileBackupRepository) BackupImage(image_name string, image_data []byte) error {
 	image_path := r.generateImageFilePath(image_name)
 
-	// Write image_data to file
+	// Write image_data to file if file not exists create it
 	// e.g. /home/backup/3JQ3Z0Y.jpg
-	fi, err := os.Open(image_path)
+	fi, err := os.OpenFile(image_path, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		return err
 	}

@@ -1,0 +1,5 @@
+logs
+backup
+*.tar
+config.yaml
+imgur-backup

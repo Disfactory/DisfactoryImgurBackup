@@ -32,7 +32,7 @@ func TestGetImages(t *testing.T) {
 			i+1, images_0_9[i+1].CreatedAt.String())
 	}
 
-	images_10_19, err := repo.GetImages(10, 10)
+	images_10_19, err := repo.GetImages(10, 1)
 	assert.Nil(t, err)
 	assert.Equal(t, 10, len(images_10_19))
 

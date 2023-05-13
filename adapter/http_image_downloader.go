@@ -12,7 +12,7 @@ func NewHttpImageDownloader() HttpImageDownloader {
 	return HttpImageDownloader{}
 }
 
-func (d HttpImageDownloader) DownloadImage(image_url string) ([]byte, error) {
+func (d HttpImageDownloader) Download(image_url string) ([]byte, error) {
 	// Download image from image_url
 	// e.g. https://i.imgur.com/3JQ3Z0Y.jpg
 	// return image_data, err

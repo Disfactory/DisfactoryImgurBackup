@@ -21,5 +21,5 @@ func (i FactoryImage) GetFileName() string {
 }
 
 type FactoryImageRepository interface {
-	GetImages(size int, offset int) ([]FactoryImage, error)
+	GetImages(size int, page int) ([]FactoryImage, error)
 }
